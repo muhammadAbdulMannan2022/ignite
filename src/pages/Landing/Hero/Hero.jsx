@@ -22,7 +22,7 @@ export default function Hero() {
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-white max-w-4xl">
+                        <h1 className="text-3xl font-[900] sm:text-4xl md:text-6xl leading-tight text-[#CCD8E5] max-w-4xl">
                             <GradientText className="inline-block" text="Spiritual" />{" "}
                             Growth Starts with a Conversation
                         </h1>

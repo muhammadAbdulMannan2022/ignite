@@ -96,12 +96,13 @@ const GlassyNavbar = () => {
   }
 
   return (
-    // <div className="w-full px-5 md:px-20 bg-white">
+
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 px-5 md:px-20 pt-3 md:pt-5"
+      className="absolute top-0 left-0 right-0 px-5 md:px-20 pt-3 md:pt-5"
+      style={{ zIndex: 10000 }}
     >
-      <div className="backdrop-blur-md bg-white/10 shadow-lg mx-auto px-4 sm:px-6 lg:px-8 rounded-full">
+      <div style={{ zIndex: 10000 }} className="backdrop-blur-md z-50 bg-white/10 shadow-lg mx-auto px-4 sm:px-6 lg:px-8 rounded-full">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div ref={logoRef} className="flex-shrink-0">
@@ -174,7 +175,7 @@ const GlassyNavbar = () => {
       <div
         ref={mobileMenuRef}
         className="md:hidden overflow-hidden backdrop-blur-md bg-white/5 border-t border-white/10"
-        style={{ height: 0 }}
+        style={{ zIndex: 10000 }}
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
           {menuItems.map((item) => (
@@ -216,7 +217,7 @@ const GlassyNavbar = () => {
         </div>
       </div>
     </nav>
-    // </div>
+
   )
 }
 
