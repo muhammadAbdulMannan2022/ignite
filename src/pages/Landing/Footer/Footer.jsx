@@ -1,9 +1,9 @@
 import { Link } from "react-router"
 import { Facebook, Twitter, Linkedin } from "lucide-react"
 
-export default function Footer() {
+export default function Footer({ className }) {
     return (
-        <footer className="bg-black text-gray-300">
+        <footer className={`bg-black text-gray-300 ${className}`}>
             {/* Main footer content */}
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -34,7 +34,7 @@ export default function Footer() {
                         <h3 className="text-white text-lg font-semibold mb-6">Subscription</h3>
                         <ul className="space-y-4">
                             <li>
-                                <Link to="/plans" className="text-gray-400 hover:text-white transition-colors duration-200">
+                                <Link to="/pricing" className="text-gray-400 hover:text-white transition-colors duration-200">
                                     Plans
                                 </Link>
                             </li>
