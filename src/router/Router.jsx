@@ -9,6 +9,8 @@ import VerifyCode from "../pages/auth/VerifyCode";
 import ChangePasswordPage from "../pages/auth/ChangePass";
 import BackToLogin from "../pages/auth/BackToLogin";
 import SignUpPage from "../pages/auth/Signup";
+import DashboardLayout from "../pages/Dashboards/DashboardLayout";
+import AdminLayout from "../pages/Dashboards/admin/adminLayout";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +52,20 @@ const router = createBrowserRouter([
           {
             path: "signup",
             element: <SignUpPage />
+          }
+        ]
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: "",
+            element: <h1 className="text-6xl text-white">user</h1>
+          },
+          {
+            path: "admin",
+            element: <AdminLayout />
           }
         ]
       }
