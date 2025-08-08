@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.hideScrollBar::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.hideScrollBar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hideScrollBar::-webkit-scrollbar-thumb {
+    background-color: #9dbde931;
+    border-radius: 2;
+}
+
+.hideScrollBar {
+    scrollbar-width: thin;
+    scrollbar-color: #9dbde91a transparent;
+}

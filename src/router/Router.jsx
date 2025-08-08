@@ -11,6 +11,8 @@ import BackToLogin from "../pages/auth/BackToLogin";
 import SignUpPage from "../pages/auth/Signup";
 import DashboardLayout from "../pages/Dashboards/DashboardLayout";
 import AdminLayout from "../pages/Dashboards/admin/adminLayout";
+import Chat from "../components/Chat";
+import UserManagement from "../pages/Dashboards/admin/adminpages/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -65,7 +67,17 @@ const router = createBrowserRouter([
           },
           {
             path: "admin",
-            element: <AdminLayout />
+            element: <AdminLayout />,
+            children: [
+              {
+                path: "",
+                element: <Chat />
+              },
+              {
+                path: "userManagement",
+                element: <UserManagement />
+              }
+            ]
           }
         ]
       }

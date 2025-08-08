@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Topbar from "./adminpages/TopBar"
 import Sidebar from "./adminpages/SideBar"
 import UserManagement from "./adminpages/UserManagement"
+import { Outlet } from "react-router"
 
 
 export default function AdminLayout() {
@@ -31,14 +32,17 @@ export default function AdminLayout() {
     }, [])
 
     return (
-        <div className="flex h-screen w-full bg-gray-100 overflow-hidden">
+        <div className="flex h-screen w-full overflow-hidden">
             <Topbar toggleSidebar={toggleSidebar} />
             <div
                 className={`flex flex-1 flex-col transition-all duration-300 ease-in-out
                 ml-0 md:ml-64`}
             >
                 <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-                <UserManagement />
+                {/* main content of admin data */}
+                <main className="flex-1 p-6 pt-24 bg-blue-950/10 backdrop-blur-xs">
+                    <Outlet />
+                </main>
             </div>
         </div>
     )
