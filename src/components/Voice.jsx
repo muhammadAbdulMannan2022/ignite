@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Mic, MicOff } from "lucide-react";
+import { Mic, MicOff, Video, VideoOff } from "lucide-react";
 
-export default function Voice() {
+export default function Voice({ isVideo }) {
     const audioRef = useRef(null);
+    const videoRef = useRef(null);
     const debounceTimeout = useRef(null);
     const animationFrameRef = useRef(null);
     const audioContextRef = useRef(null);
     const micStreamRef = useRef(null);
+    const videoStreamRef = useRef(null);
     const [isTalking, setIsTalking] = useState(false);
     const isTalkingRef = useRef(false);
     const [started, setStarted] = useState(false);
+    const [videoStarted, setVideoStarted] = useState(false);
     const [borderRadius, setBorderRadius] = useState(
         "57% 43% 70% 30% / 30% 37% 63% 70%"
     );
@@ -69,7 +72,6 @@ export default function Voice() {
                         isTalkingRef.current = true;
                         setIsTalking(true);
                     }
-                    // console.log("🎤 Talking detected, RMS:", rms.toFixed(4));
                 } else {
                     if (isTalkingRef.current && !debounceTimeout.current) {
                         debounceTimeout.current = setTimeout(() => {
@@ -78,7 +80,6 @@ export default function Voice() {
                             debounceTimeout.current = null;
                         }, debounceDelay);
                     }
-                    // console.log("🤫 Silence detected, RMS:", rms.toFixed(4));
                 }
 
                 if (micStreamRef.current) {
@@ -89,6 +90,22 @@ export default function Voice() {
             checkTalking();
         } catch (err) {
             console.error("Mic access error:", err);
+        }
+    };
+
+    const startVideo = async () => {
+        try {
+            const videoStream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: "user" },
+            });
+            videoStreamRef.current = videoStream;
+            setVideoStarted(true);
+
+            if (videoRef.current) {
+                videoRef.current.srcObject = videoStream;
+            }
+        } catch (err) {
+            console.error("Video access error:", err);
         }
     };
 
@@ -111,6 +128,10 @@ export default function Voice() {
                 micStreamRef.current.getTracks().forEach((track) => track.stop());
                 micStreamRef.current = null;
             }
+            if (videoStreamRef.current) {
+                videoStreamRef.current.getTracks().forEach((track) => track.stop());
+                videoStreamRef.current = null;
+            }
             if (audioContextRef.current) {
                 audioContextRef.current.close().catch((err) => console.error("Error closing AudioContext:", err));
                 audioContextRef.current = null;
@@ -124,6 +145,7 @@ export default function Voice() {
                 debounceTimeout.current = null;
             }
             setStarted(false);
+            setVideoStarted(false);
             setIsTalking(false);
             isTalkingRef.current = false;
         };
@@ -131,15 +153,36 @@ export default function Voice() {
 
     return (
         <div className="flex flex-col items-center justify-center h-full">
-            {!started && (
-                <button
-                    onClick={startMic}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-xl mb-6 transition-all"
-                >
-                    <Mic className="inline w-5 h-5 mr-2" />
-                    Start Mic
-                </button>
-            )}
+            <div className="w-[400px] h-[300px] bg-black absolute top-10 right-40 overflow-hidden">
+                {isVideo && videoStarted && (
+                    <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        className="w-full h-full object-cover"
+                    />
+                )}
+            </div>
+            <div className="flex space-x-4">
+                {!started && (
+                    <button
+                        onClick={startMic}
+                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-xl mb-6 transition-all"
+                    >
+                        <Mic className="inline w-5 h-5 mr-2" />
+                        Start Mic
+                    </button>
+                )}
+                {isVideo && !videoStarted && (
+                    <button
+                        onClick={startVideo}
+                        className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-xl mb-6 transition-all"
+                    >
+                        <Video className="inline w-5 h-5 mr-2" />
+                        Start Video
+                    </button>
+                )}
+            </div>
 
             <audio ref={audioRef} autoPlay muted className="hidden" />
 

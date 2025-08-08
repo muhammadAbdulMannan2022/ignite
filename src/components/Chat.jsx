@@ -30,6 +30,7 @@ const initialMessages = [
 export default function Chat() {
     const [messages, setMessages] = useState(initialMessages);
     const [isVoice, setIsVoice] = useState(false);
+    const [isVideo, setIsVideo] = useState(false)
     const [optimisticMessages, addOptimisticMessage] = useOptimistic(
         messages,
         (state, newMessage) => [...state, newMessage]
@@ -75,7 +76,7 @@ export default function Chat() {
             <div className="flex-1 flex flex-col items-center justify-center relative">
                 <div className="max-w-5xl w-full h-[75vh] overflow-y-auto p-4 space-y-4 hideScrollBar">
                     {isVoice ? (
-                        <Voice />
+                        <Voice isVideo={isVideo} />
                     ) : (
                         <>
                             {optimisticMessages.map((msg) => (
@@ -99,8 +100,8 @@ export default function Chat() {
                                     <div className="flex flex-col max-w-[85%]">
                                         <div
                                             className={`rounded-xl px-4 py-2 text-sm leading-relaxed shadow-sm ${msg.isSender
-                                                    ? "bg-[#1f314a34] shadow-2xl shadow-gray-900 backdrop-blur-sm text-[#9DBDE9] rounded-br-none"
-                                                    : "bg-black/20 backdrop-blur-sm shadow-gray-900 text-[#9DBDE9] rounded-bl-none"
+                                                ? "bg-[#1f314a34] shadow-2xl shadow-gray-900 backdrop-blur-sm text-[#9DBDE9] rounded-br-none"
+                                                : "bg-black/20 backdrop-blur-sm shadow-gray-900 text-[#9DBDE9] rounded-bl-none"
                                                 }`}
                                         >
                                             {msg.text}
@@ -147,13 +148,21 @@ export default function Chat() {
                         </button>
                     </div>
                     <button
-                        onClick={() => setIsVoice((v) => !v)}
+                        onClick={() => {
+                            setIsVoice((v) => !v)
+                            // setIsVideo(isVoice)
+                        }}
                         className="ml-3 w-12 h-12 flex items-center justify-center rounded-full bg-[#0A1422] text-white hover:cursor-pointer"
                     >
                         <BsSoundwave className="h-6 w-6" />
                         <span className="sr-only">Voice message</span>
                     </button>
-                    <button className="ml-2 w-12 h-12 flex items-center justify-center rounded-full bg-[#0A1422] text-white hover:cursor-pointer">
+                    <button onClick={() => {
+                        console.log("clicked", isVoice, isVideo)
+                        if (isVoice) {
+                            setIsVideo(!isVideo)
+                        }
+                    }} disabled={!isVoice} className={`ml-2 w-12 h-12 flex items-center justify-center rounded-full bg-[#0A1422] text-white  ${!isVoice ? "cursor-not-allowed" : "hover:cursor-pointer"}`}>
                         <FaVideo className="h-6 w-6" />
                         <span className="sr-only">Video call</span>
                     </button>
