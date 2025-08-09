@@ -74,7 +74,7 @@ const router = createBrowserRouter([
                 element: <Chat />
               },
               {
-                path: "userManagement",
+                path: "user-controle",
                 element: <UserManagement />
               }
             ]

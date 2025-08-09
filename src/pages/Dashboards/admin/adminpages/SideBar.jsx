@@ -47,7 +47,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         {
             title: "Conversation",
             icon: MessageCircle,
-            url: "#",
+            url: "/dashboard/admin/",
             active: true,
         },
         {
@@ -57,7 +57,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             isOpen: isManagementOpen,
             toggle: () => setIsManagementOpen(!isManagementOpen),
             items: [
-                { title: "User", icon: Users, url: "#" },
+                { title: "User", icon: Users, url: "/dashboard/admin/user-controle" },
                 { title: "File", icon: FileText, url: "#" },
             ],
         },
