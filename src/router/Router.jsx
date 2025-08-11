@@ -10,9 +10,10 @@ import ChangePasswordPage from "../pages/auth/ChangePass";
 import BackToLogin from "../pages/auth/BackToLogin";
 import SignUpPage from "../pages/auth/Signup";
 import DashboardLayout from "../pages/Dashboards/DashboardLayout";
-import AdminLayout from "../pages/Dashboards/admin/adminLayout";
 import Chat from "../components/Chat";
 import UserManagement from "../pages/Dashboards/admin/adminpages/UserManagement";
+import FileManagement from "../pages/Dashboards/admin/FileManagement/FileManagement";
+import AdminLayout from "../pages/Dashboards/admin/AdminLayout";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
               {
                 path: "user-controle",
                 element: <UserManagement />
+              },
+              {
+                path: "file-controle",
+                element: <FileManagement />
               }
             ]
           }

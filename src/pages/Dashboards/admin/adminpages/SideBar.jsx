@@ -58,7 +58,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             toggle: () => setIsManagementOpen(!isManagementOpen),
             items: [
                 { title: "User", icon: Users, url: "/dashboard/admin/user-controle" },
-                { title: "File", icon: FileText, url: "#" },
+                { title: "File", icon: FileText, url: "/dashboard/admin/file-controle" },
             ],
         },
         {
