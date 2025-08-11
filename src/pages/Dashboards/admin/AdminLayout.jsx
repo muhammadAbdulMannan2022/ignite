@@ -40,7 +40,7 @@ export default function AdminLayout() {
             >
                 <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
                 {/* main content of admin data */}
-                <main className="flex-1 p-6 pt-24 bg-blue-950/10 backdrop-blur-xs">
+                <main className="flex-1 p-4 md:p-6 pt-24 bg-blue-950/10 backdrop-blur-xs">
                     <Outlet />
                 </main>
             </div>

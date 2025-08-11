@@ -39,17 +39,19 @@ export default function AddUserPage() {
 
     return (
         <div className="flex flex-col items-center p-4 text-white">
-            <div className="max-w-2xl w-xl space-y-6 rounded-lg p-6 shadow-lg">
+            <div className="max-w-xl w-full space-y-6 rounded-lg p-6 shadow-lg 
+                sm:p-8
+                ">
                 {/* Header */}
                 <div className="flex items-center justify-between">
-
+                    {/* Back arrow could be added here if needed */}
                     <h1 className="flex-1 text-center text-2xl font-bold text-[#D3DEEC]">Add User</h1>
-                    <div className="w-6" /> {/* Spacer to balance the back arrow */}
+                    <div className="w-6" /> {/* Spacer */}
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleAddUser} className="space-y-6">
-                    {/* Name of the user */}
+                    {/* Name */}
                     <div>
                         <label htmlFor="name" className="block text-sm text-gray-400 mb-1">
                             Name of the user
@@ -59,7 +61,8 @@ export default function AddUserPage() {
                             value={newUser.name}
                             onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
                             placeholder="Anus Kumar"
-                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500
+                                focus:outline-none focus:ring-2 focus:ring-blue-600"
                         />
                     </div>
 
@@ -74,7 +77,8 @@ export default function AddUserPage() {
                             onChange={(e) => setNewUser({ ...newUser, phoneNumber: e.target.value })}
                             placeholder="01775551325"
                             type="tel"
-                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500
+                                focus:outline-none focus:ring-2 focus:ring-blue-600"
                         />
                     </div>
 
@@ -87,7 +91,8 @@ export default function AddUserPage() {
                             id="subscription-plan"
                             value={newUser.subscriptionPlan}
                             onChange={(e) => setNewUser({ ...newUser, subscriptionPlan: e.target.value })}
-                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white
+                                focus:outline-none focus:ring-2 focus:ring-blue-600"
                         >
                             <option value="" disabled>Select One</option>
                             <option value="basic">Basic</option>
@@ -106,22 +111,24 @@ export default function AddUserPage() {
                             value={newUser.profession}
                             onChange={(e) => setNewUser({ ...newUser, profession: e.target.value })}
                             placeholder="Frontend Developer"
-                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4180AD]"
+                            className="w-full rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white placeholder:text-gray-500
+                                focus:outline-none focus:ring-2 focus:ring-[#4180AD]"
                         />
                     </div>
 
-                    {/* Upload your photo */}
+                    {/* Upload Photo */}
                     <div>
                         <label htmlFor="photo-upload" className="block text-sm text-gray-400 mb-1">
                             Upload your photo
                         </label>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                             <label
                                 htmlFor="photo-upload"
-                                className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white hover:bg-gray-600"
+                                className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-700 bg-gray-700 px-3 py-2 text-white
+                                    hover:bg-gray-600"
                             >
                                 <ImageIcon className="h-5 w-5 text-gray-400" />
-                                <span>{newUser.photoFileName || "Choose file"}</span>
+                                <span className="truncate max-w-[150px] sm:max-w-xs">{newUser.photoFileName || "Choose file"}</span>
                                 <input
                                     id="photo-upload"
                                     type="file"
@@ -146,7 +153,8 @@ export default function AddUserPage() {
                     {/* Done Button */}
                     <button
                         type="submit"
-                        className="w-full rounded-md bg-[#4180AD] py-3 text-lg font-semibold text-white hover:bg-[#4180add7] focus:outline-none focus:ring-2 focus:ring-[#4180AD] focus:ring-offset-1 focus:ring-offset-[#4180AD] hover:cursor-pointer"
+                        className="w-full rounded-md bg-[#4180AD] py-3 text-lg font-semibold text-white
+                            hover:bg-[#4180add7] focus:outline-none focus:ring-2 focus:ring-[#4180AD] focus:ring-offset-1 focus:ring-offset-[#4180AD] hover:cursor-pointer"
                     >
                         Done
                     </button>
