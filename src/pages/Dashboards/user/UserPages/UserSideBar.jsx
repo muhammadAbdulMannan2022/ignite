@@ -1,29 +1,26 @@
 "use client";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, Link } from "react-router";
 import {
     MessageCircle,
-    Users,
-    FileText,
     Mail,
-    Lock,
     Settings,
     X,
     ChevronDown,
     Edit,
     LogOut,
-    UserRoundCog,
+    LockIcon,
+    User,
+    Crown,
 } from "lucide-react";
-import { CgProfile } from "react-icons/cg";
 import gsap from "gsap";
 
-export default function Sidebar({ isOpen, toggleSidebar }) {
+export default function UserSidebar({ isOpen, toggleSidebar }) {
 
     const sidebarRef = useRef(null);
     const isInitialMount = useRef(true);
     const [isManagementOpen, setIsManagementOpen] = useState(true);
-    const [isSettingsOpen, setIsSettingsOpen] = useState(true);
 
     const location = useLocation(); // ✅ get current path
 
@@ -58,7 +55,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         {
             title: "Conversation",
             icon: MessageCircle,
-            url: "/dashboard/admin/",
+            url: "/dashboard/user",
         },
         {
             title: "Management",
@@ -67,22 +64,21 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             isOpen: isManagementOpen,
             toggle: () => setIsManagementOpen(!isManagementOpen),
             items: [
-                { title: "User", icon: Users, url: "/dashboard/admin/user-controle" },
-                { title: "File", icon: FileText, url: "/dashboard/admin/file-controle" },
+                { title: "Change Email", icon: Mail, url: "/dashboard/user/changeEmail" },
+                { title: "Change Password", icon: LockIcon, url: "/dashboard/user/changePassword" },
             ],
         },
         {
-            title: "Settings",
-            icon: UserRoundCog,
-            collapsible: true,
-            isOpen: isSettingsOpen,
-            toggle: () => setIsSettingsOpen(!isSettingsOpen),
-            items: [
-                { title: "Profile", icon: CgProfile, url: "/dashboard/admin/view/profile" },
-                { title: "Change Email", icon: Mail, url: "/dashboard/admin/changeEmail" },
-                { title: "Change Password", icon: Lock, url: "/dashboard/admin/changePassword" },
-            ],
+            title: "Profile",
+            icon: User,
+            url: "/dashboard/user/view/profile"
         },
+        {
+            title: "Membership",
+            icon: Crown,
+            url: "/dashboard/user/pricing"
+        },
+
     ];
 
     const isActive = (url) => location.pathname === url;

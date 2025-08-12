@@ -1,9 +1,10 @@
 import React from 'react';
 import { Edit2, Phone, Mail, MapPin, User, Calendar } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 function Profile() {
     const navigate = useNavigate()
+    const location = useLocation()
     return (
         <div className='flex items-center justify-center mt-0 md:mt-20'>
             <div className="relative overflow-hidden max-w-7xl max-h-[80vh] overflow-y-auto">
@@ -18,7 +19,7 @@ function Profile() {
                             WELCOME TO <span style={{ color: '#0D6FF0' }}>SENSES</span>
                         </h1>
                         <button
-                            onClick={() => navigate("/dashboard/admin/edit/profile")}
+                            onClick={() => navigate(location.pathname == "/dashboard/user/view/profile" ? "/dashboard/user/edit/profile" : "/dashboard/admin/edit/profile")}
                             className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl hover:cursor-pointer"
                             style={{ backgroundColor: '#4180AD', color: 'white' }}
                         >

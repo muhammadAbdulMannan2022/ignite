@@ -18,6 +18,8 @@ import Profile from "../components/lib/Profile";
 import EditPrifile from "../components/lib/EditProfile";
 import ChangeEmail from "../components/lib/ChangeEmail";
 import ChangePasswordAuthUser from "../components/lib/ChangePasswordAuthUser";
+import UserLayout from "../pages/Dashboards/user/UserLayout";
+import UserPriccing from "../pages/Dashboards/user/UserPages/UserPriccing";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +107,36 @@ const router = createBrowserRouter([
                 element: <div className="flex w-full h-full items-center justify-center">
                   <ChangePasswordAuthUser />
                 </div>
+              }
+            ]
+          },
+          {
+            path: "user",
+            element: <UserLayout />,
+            children: [
+              {
+                path: "",
+                element: <Chat />
+              },
+              {
+                path: "changeEmail",
+                element: <div className="flex w-full h-full items-center justify-center"><ChangeEmail /></div>
+              },
+              {
+                path: "changePassword",
+                element: <div className="flex w-full h-full items-center justify-center"><ChangePasswordAuthUser /></div>
+              },
+              {
+                path: "view/profile",
+                element: <Profile />
+              },
+              {
+                path: "edit/profile",
+                element: <EditPrifile />
+              },
+              {
+                path: "pricing",
+                element: <UserPriccing />
               }
             ]
           }

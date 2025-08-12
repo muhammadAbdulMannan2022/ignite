@@ -1,12 +1,17 @@
 import { Mic, Rocket, Square } from "lucide-react"
 
-export default function PricingPlan() {
+export default function PricingPlan({ isLoggedIN, children }) {
     return (
         <div className="min-h-screen text-white py-12 pt-32 md:pt-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative overflow-hidden">
-            <div className="relative z-10 text-center mb-12">
-                <h1 className="text-4xl sm:text-5xl font-bold mb-2">Our Pricing Plan</h1>
-                <p className="text-lg text-gray-400 uppercase tracking-widest">SIGN UP RISK FREE</p>
-            </div>
+            {
+                !isLoggedIN && <div className="relative z-10 text-center mb-12">
+                    <h1 className="text-4xl sm:text-5xl font-bold mb-2">Our Pricing Plan</h1>
+                    <p className="text-lg text-gray-400 uppercase tracking-widest">SIGN UP RISK FREE</p>
+                </div>
+            }
+            {
+                children && children
+            }
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
                 {/* Free Plan Card */}
