@@ -1,54 +1,63 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import gsap from "gsap"
-import { MessageCircle, Users, FileText, Mail, Lock, Settings, X, ChevronDown, Edit, LogOut, UserRoundCog } from "lucide-react"
-import { Link } from "react-router"
-import { CgProfile } from "react-icons/cg"
-
+import { useContext, useEffect, useRef, useState } from "react";
+import { useLocation, Link } from "react-router";
+import {
+    MessageCircle,
+    Users,
+    FileText,
+    Mail,
+    Lock,
+    Settings,
+    X,
+    ChevronDown,
+    Edit,
+    LogOut,
+    UserRoundCog,
+} from "lucide-react";
+import { CgProfile } from "react-icons/cg";
 
 export default function Sidebar({ isOpen, toggleSidebar }) {
-    const sidebarRef = useRef(null)
-    const isInitialMount = useRef(true)
-    const [isManagementOpen, setIsManagementOpen] = useState(true)
-    const [isSettingsOpen, setIsSettingsOpen] = useState(true)
+
+    const sidebarRef = useRef(null);
+    const isInitialMount = useRef(true);
+    const [isManagementOpen, setIsManagementOpen] = useState(true);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(true);
+
+    const location = useLocation(); // ✅ get current path
 
     useEffect(() => {
         if (sidebarRef.current) {
-            const isMobileView = window.innerWidth < 768 // md breakpoint
+            const isMobileView = window.innerWidth < 768;
 
             if (isInitialMount.current) {
                 if (!isMobileView) {
-                    // Initial animation for desktop view
                     gsap.fromTo(
                         sidebarRef.current,
                         { x: -260, opacity: 0 },
                         { x: 0, opacity: 1, duration: 0.5, ease: "power3.out", delay: 0.2 }
-                    )
+                    );
                 }
-                isInitialMount.current = false
+                isInitialMount.current = false;
             } else {
                 if (isMobileView) {
-                    // Animate sidebar for mobile
                     gsap.to(sidebarRef.current, {
                         x: isOpen ? 0 : -260,
                         duration: 0.3,
-                        ease: "power2.out"
-                    })
+                        ease: "power2.out",
+                    });
                 } else {
-                    // Ensure sidebar is visible on desktop
-                    gsap.set(sidebarRef.current, { x: 0, opacity: 1 })
+                    gsap.set(sidebarRef.current, { x: 0, opacity: 1 });
                 }
             }
         }
-    }, [isOpen])
+    }, [isOpen]);
 
     const navItems = [
         {
             title: "Conversation",
             icon: MessageCircle,
             url: "/dashboard/admin/",
-            active: true,
         },
         {
             title: "Management",
@@ -68,21 +77,23 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             isOpen: isSettingsOpen,
             toggle: () => setIsSettingsOpen(!isSettingsOpen),
             items: [
-                { title: "Profile", icon: CgProfile, url: "#" },
-                { title: "Change Email", icon: Mail, url: "#" },
-                { title: "Change Password", icon: Lock, url: "#" },
+                { title: "Profile", icon: CgProfile, url: "/dashboard/admin/view/profile" },
+                { title: "Change Email", icon: Mail, url: "/dashboard/admin/changeEmail" },
+                { title: "Change Password", icon: Lock, url: "/dashboard/admin/changePassword" },
             ],
         },
-    ]
+    ];
+
+    const isActive = (url) => location.pathname === url;
 
     return (
         <aside
             ref={sidebarRef}
             className={`fixed left-0 z-50 flex w-64 flex-col bg-blue-950/10 backdrop-blur-xs text-[#ACC0D8] shadow-lg
-                top-16 h-[calc(100vh-4rem)] 
-                md:translate-x-0
-                max-md:transform max-md:transition-transform max-md:duration-300 max-md:ease-in-out
-                ${isOpen ? "max-md:translate-x-0" : "max-md:-translate-x-full"}`}
+        top-16 h-[calc(100vh-4rem)] 
+        md:translate-x-0
+        max-md:transform max-md:transition-transform max-md:duration-300 max-md:ease-in-out
+        ${isOpen ? "max-md:translate-x-0" : "max-md:-translate-x-full"}`}
         >
             <div className="flex items-center justify-end border-b border-gray-700 px-4 py-3 md:hidden hover:cursor-pointer">
                 <button
@@ -102,7 +113,6 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                         alt="Cameron Malek"
                         width={80}
                         height={80}
-                        className=""
                     />
                 </div>
                 <div className="mt-3 text-center">
@@ -117,6 +127,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                 </div>
             </div>
 
+            {/* Nav */}
             <nav className="flex-1 overflow-auto py-4">
                 <ul className="space-y-1 px-4">
                     {navItems.map((item, index) => (
@@ -131,7 +142,10 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                                             <item.icon className="h-5 w-5" />
                                             <span>{item.title}</span>
                                         </div>
-                                        <ChevronDown className={`h-4 w-4 transition-transform ${item.isOpen ? "rotate-180" : ""}`} />
+                                        <ChevronDown
+                                            className={`h-4 w-4 transition-transform ${item.isOpen ? "rotate-180" : ""
+                                                }`}
+                                        />
                                     </button>
                                     {item.isOpen && (
                                         <ul className="ml-6 mt-1 space-y-1 border-l border-gray-700 pl-3">
@@ -139,7 +153,10 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                                                 <li key={subItem.title}>
                                                     <Link
                                                         to={subItem.url}
-                                                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-all hover:bg-gray-700/20 hover:text-[#ACC0D8]"
+                                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${isActive(subItem.url)
+                                                            ? "bg-gradient-to-r from-[#561880] to-[#3F64ED] text-[#ACC0D8]"
+                                                            : "text-gray-400 hover:bg-gray-700/20 hover:text-[#ACC0D8]"
+                                                            }`}
                                                     >
                                                         <subItem.icon className="h-4 w-4" />
                                                         <span>{subItem.title}</span>
@@ -151,21 +168,25 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                                 </>
                             ) : (
                                 <Link
-                                    href={item.url}
-                                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all
-                                        ${item.active ? "bg-gradient-to-r from-[#561880] to-[#3F64ED] text-[#ACC0D8]" : "text-gray-300 hover:bg-gray-700/20 hover:text-[#ACC0D8]"}`}
+                                    to={item.url}
+                                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${isActive(item.url)
+                                        ? "bg-gradient-to-r from-[#561880] to-[#3F64ED] text-[#ACC0D8]"
+                                        : "text-gray-300 hover:bg-gray-700/20 hover:text-[#ACC0D8]"
+                                        }`}
                                 >
                                     <item.icon className="h-5 w-5" />
                                     <span>{item.title}</span>
                                 </Link>
                             )}
-                            {index === 0 && <div className="my-4 border-b border-gray-700" />} {/* Separator after Conversation */}
+                            {index === 0 && (
+                                <div className="my-4 border-b border-gray-700" />
+                            )}
                         </li>
                     ))}
                 </ul>
             </nav>
 
-            {/* Logout Button */}
+            {/* Logout */}
             <div className="p-4 border-t border-gray-700 ">
                 <button className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-gray-300 transition-all hover:bg-gray-700/20 hover:text-red-300 hover:cursor-pointer">
                     <LogOut className="h-5 w-5" />
@@ -173,5 +194,5 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                 </button>
             </div>
         </aside>
-    )
+    );
 }

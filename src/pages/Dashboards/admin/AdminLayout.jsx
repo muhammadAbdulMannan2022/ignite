@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, } from "react"
 import Topbar from "./adminpages/TopBar"
 import Sidebar from "./adminpages/SideBar"
-import UserManagement from "./adminpages/UserManagement"
+
 import { Outlet } from "react-router"
 
-
 export default function AdminLayout() {
+
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
         if (typeof window !== "undefined") {
@@ -32,6 +32,7 @@ export default function AdminLayout() {
     }, [])
 
     return (
+
         <div className="flex h-screen w-full overflow-hidden">
             <Topbar toggleSidebar={toggleSidebar} />
             <div
@@ -45,5 +46,7 @@ export default function AdminLayout() {
                 </main>
             </div>
         </div>
+
+
     )
 }

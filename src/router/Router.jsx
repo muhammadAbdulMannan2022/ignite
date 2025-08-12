@@ -14,6 +14,10 @@ import Chat from "../components/Chat";
 import UserManagement from "../pages/Dashboards/admin/adminpages/UserManagement";
 import FileManagement from "../pages/Dashboards/admin/FileManagement/FileManagement";
 import AdminLayout from "../pages/Dashboards/admin/AdminLayout";
+import Profile from "../components/lib/Profile";
+import EditPrifile from "../components/lib/EditProfile";
+import ChangeEmail from "../components/lib/ChangeEmail";
+import ChangePasswordAuthUser from "../components/lib/ChangePasswordAuthUser";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +85,26 @@ const router = createBrowserRouter([
               {
                 path: "file-controle",
                 element: <FileManagement />
+              },
+              {
+                path: "view/profile",
+                element: <Profile />
+              },
+              {
+                path: "edit/profile",
+                element: <EditPrifile />
+              },
+              {
+                path: "changeEmail",
+                element: <div className="flex w-full h-full items-center justify-center">
+                  <ChangeEmail />
+                </div>
+              },
+              {
+                path: "changePassword",
+                element: <div className="flex w-full h-full items-center justify-center">
+                  <ChangePasswordAuthUser />
+                </div>
               }
             ]
           }

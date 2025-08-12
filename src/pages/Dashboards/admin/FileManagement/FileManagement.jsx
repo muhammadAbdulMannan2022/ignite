@@ -8,6 +8,7 @@ const FileManagement = () => {
     const [q, setQ] = useState("");
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    const [isQOpen, setIsQOpen] = useState(false)
     const [selectedFileId, setSelectedFileId] = useState(null); // New state to track selected file ID
     const [files, setFiles] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: "id", direction: "asc" });
@@ -129,6 +130,22 @@ const FileManagement = () => {
                 <Modal isOpen={isCategoryOpen} onClose={() => setIsCategoryOpen(false)}>
                     <CategorySelector changeCategory={changeCategory} id={selectedFileId} />
                 </Modal>
+                <Modal isOpen={isQOpen} onClose={() => setIsQOpen(false)}>
+                    <div className="flex items-center justify-center p-5 py-20 flex-col">
+                        <h1 className="text-2xl text-white font-semibold text-center">Are you sure <br />
+                            about deleting the file?</h1>
+                        <div className="flex w-[70%] gap-5 items-center justify-center mt-10">
+                            <button onClick={() => {
+                                handleDelete(selectedFileId)
+                                setIsQOpen(false)
+                            }} className="text-white px-4 py-2 w-1/2 text-center border border-[#4180AD] rounded-md hover:cursor-pointer">Yes</button>
+                            <button onClick={() => {
+                                setSelectedFileId("")
+                                setIsQOpen(false)
+                            }} className="text-white px-4 py-2 w-1/2 text-center bg-[#4180AD] rounded-md hover:cursor-pointer">No</button>
+                        </div>
+                    </div>
+                </Modal>
 
                 <section className="rounded-xl border border-gray-700 bg-gray-800/20 shadow min-w-5xl">
                     <div className="grid grid-cols-12 px-4 py-3 text-sm font-medium text-gray-300 bg-[#1A2137] md:px-10">
@@ -213,7 +230,7 @@ const FileManagement = () => {
 
                                     <div className="col-span-1 text-right">
                                         <button
-                                            onClick={() => handleDelete(file.id)}
+                                            onClick={() => { setIsQOpen(true); setSelectedFileId(file.id) }}
                                             className="text-red-500 hover:text-red-600 transition hover:cursor-pointer"
                                             title="Delete file"
                                         >
