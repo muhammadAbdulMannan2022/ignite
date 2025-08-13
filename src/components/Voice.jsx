@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Mic, MicOff, Video, VideoOff } from "lucide-react";
+import { Mic, MicOff } from "lucide-react";
 
 export default function Voice({ isVideo }) {
     const audioRef = useRef(null);
@@ -9,6 +9,7 @@ export default function Voice({ isVideo }) {
     const audioContextRef = useRef(null);
     const micStreamRef = useRef(null);
     const videoStreamRef = useRef(null);
+
     const [isTalking, setIsTalking] = useState(false);
     const isTalkingRef = useRef(false);
     const [started, setStarted] = useState(false);
@@ -19,7 +20,7 @@ export default function Voice({ isVideo }) {
 
     const generateRandomBorderRadius = () => {
         const randomPercents = Array.from({ length: 8 }, () =>
-            Math.floor(Math.random() * (90 - 10 + 1)) + 40
+            Math.floor(Math.random() * 51) + 40
         );
         return `${randomPercents[0]}% ${randomPercents[1]}% ${randomPercents[2]}% ${randomPercents[3]}% / ${randomPercents[4]}% ${randomPercents[5]}% ${randomPercents[6]}% ${randomPercents[7]}%`;
     };
@@ -90,99 +91,125 @@ export default function Voice({ isVideo }) {
             checkTalking();
         } catch (err) {
             console.error("Mic access error:", err);
+            setStarted(false);
         }
+    };
+
+    const stopMic = () => {
+        if (micStreamRef.current) {
+            micStreamRef.current.getTracks().forEach((track) => track.stop());
+            micStreamRef.current = null;
+        }
+        if (audioContextRef.current) {
+            audioContextRef.current.close().catch(console.error);
+            audioContextRef.current = null;
+        }
+        if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+            animationFrameRef.current = null;
+        }
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
+            debounceTimeout.current = null;
+        }
+        setStarted(false);
+        setIsTalking(false);
+        isTalkingRef.current = false;
     };
 
     const startVideo = async () => {
         try {
-            const videoStream = await navigator.mediaDevices.getUserMedia({
+            const stream = await navigator.mediaDevices.getUserMedia({
                 video: { facingMode: "user" },
             });
-            videoStreamRef.current = videoStream;
-            setVideoStarted(true);
-
+            videoStreamRef.current = stream;
             if (videoRef.current) {
-                videoRef.current.srcObject = videoStream;
+                videoRef.current.srcObject = stream;
+                videoRef.current.play().catch((err) => {
+                    console.error("Video play error:", err);
+                });
             }
+            setVideoStarted(true);
+            console.log("Video started:", stream.active);
         } catch (err) {
             console.error("Video access error:", err);
+            setVideoStarted(false);
         }
     };
 
+    const stopVideo = () => {
+        if (videoStreamRef.current) {
+            videoStreamRef.current.getTracks().forEach((track) => track.stop());
+            videoStreamRef.current = null;
+        }
+        if (videoRef.current) {
+            videoRef.current.srcObject = null;
+        }
+        setVideoStarted(false);
+        console.log("Video stopped");
+    };
+
+    // Handle page visibility changes
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "hidden") {
+                stopMic();
+            } else if (document.visibilityState === "visible" && !micStreamRef.current) {
+                // Optionally restart mic when page becomes visible
+                const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+                if (!isApple) startMic();
+            }
+        };
+
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, []);
+
+    // React to isVideo prop changes
+    useEffect(() => {
+        if (isVideo) {
+            startVideo();
+        } else {
+            stopVideo();
+        }
+    }, [isVideo]);
+
+    // Talking animation
     useEffect(() => {
         if (!isTalking) return;
-
         const interval = setInterval(() => {
             setBorderRadius(generateRandomBorderRadius());
         }, 200);
-
         return () => clearInterval(interval);
     }, [isTalking]);
 
+    // Start mic on mount
     useEffect(() => {
         const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
         if (!isApple) startMic();
 
         return () => {
-            if (micStreamRef.current) {
-                micStreamRef.current.getTracks().forEach((track) => track.stop());
-                micStreamRef.current = null;
-            }
-            if (videoStreamRef.current) {
-                videoStreamRef.current.getTracks().forEach((track) => track.stop());
-                videoStreamRef.current = null;
-            }
-            if (audioContextRef.current) {
-                audioContextRef.current.close().catch((err) => console.error("Error closing AudioContext:", err));
-                audioContextRef.current = null;
-            }
-            if (animationFrameRef.current) {
-                cancelAnimationFrame(animationFrameRef.current);
-                animationFrameRef.current = null;
-            }
-            if (debounceTimeout.current) {
-                clearTimeout(debounceTimeout.current);
-                debounceTimeout.current = null;
-            }
-            setStarted(false);
-            setVideoStarted(false);
-            setIsTalking(false);
-            isTalkingRef.current = false;
+            stopMic();
+            stopVideo();
         };
     }, []);
 
     return (
         <div className="flex flex-col items-center justify-center h-full">
-            <div className="w-[400px] h-[300px] bg-black absolute top-10 right-40 overflow-hidden">
-                {isVideo && videoStarted && (
+            {isVideo && (
+                <div className="w-[400px] h-[300px] bg-black absolute top-10 right-40 overflow-hidden">
                     <video
                         ref={videoRef}
                         autoPlay
                         playsInline
+                        muted
                         className="w-full h-full object-cover"
                     />
-                )}
-            </div>
-            <div className="flex space-x-4">
-                {!started && (
-                    <button
-                        onClick={startMic}
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-xl mb-6 transition-all"
-                    >
-                        <Mic className="inline w-5 h-5 mr-2" />
-                        Start Mic
-                    </button>
-                )}
-                {isVideo && !videoStarted && (
-                    <button
-                        onClick={startVideo}
-                        className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-xl mb-6 transition-all"
-                    >
-                        <Video className="inline w-5 h-5 mr-2" />
-                        Start Video
-                    </button>
-                )}
-            </div>
+                </div>
+            )}
 
             <audio ref={audioRef} autoPlay muted className="hidden" />
 
@@ -199,7 +226,11 @@ export default function Voice({ isVideo }) {
                             transition: "border-radius 0.3s ease-in-out",
                         }}
                     >
-                        {isTalking ? <Mic className="w-10 h-10" /> : <MicOff className="w-10 h-10" />}
+                        {isTalking ? (
+                            <Mic className="w-10 h-10" />
+                        ) : (
+                            <MicOff className="w-10 h-10" />
+                        )}
                     </div>
                 </div>
             )}
