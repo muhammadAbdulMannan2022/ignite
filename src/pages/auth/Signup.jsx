@@ -1,13 +1,15 @@
-import { Mail, Lock, Chrome } from "lucide-react"
-import { Link } from "react-router"
+import { Mail, Lock, Chrome } from "lucide-react";
+import { Link } from "react-router";
+import { useState } from "react";
 
 export default function SignUpPage() {
-    return (
+    const [accepted, setAccepted] = useState(false);
 
-        <div className="w-full lg:w-1/2 px-6 sm:p-8 md:px-10  lg:px-12 py-6 flex flex-col justify-center">
+    return (
+        <div className="w-full lg:w-1/2 px-6 sm:p-8 md:px-10 lg:px-12 py-6 flex flex-col justify-center">
             {/* S.E.N.S.E.S. Logo Image */}
             <div className="text-center mb-2">
-                <div className="relative w-[250px] mx-auto -mb-12">
+                <div className="relative w-[250px] mx-auto mb-6">
                     <img
                         src="/logo.png"
                         alt="S.E.N.S.E.S. Logo"
@@ -15,7 +17,7 @@ export default function SignUpPage() {
                         loading="lazy"
                     />
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-semibold mt-2 sm:mt-8 mb-2 sm:mb-6 text-[#ACC0D8]">
+                <h2 className="text-3xl  sm:text-4xl font-semibold mt-2 sm:mt-8 mb-2 sm:mb-6 text-[#ACC0D8]">
                     Welcome
                 </h2>
             </div>
@@ -72,9 +74,35 @@ export default function SignUpPage() {
                     </div>
                 </div>
 
+                {/* Checkbox for Privacy Policy and Terms */}
+                <div className="flex items-center mt-4">
+                    <input
+                        type="checkbox"
+                        id="accept"
+                        className="w-4 h-4 text-[#4180AD] bg-[#1A2137] border-[#ACC0D8] rounded focus:ring-[#4180AD]"
+                        checked={accepted}
+                        onChange={(e) => setAccepted(e.target.checked)}
+                        required
+                    />
+                    <label htmlFor="accept" className="ml-2 text-sm text-[#ACC0D8]">
+                        I accept the{" "}
+                        <Link to="/privacy-policy" className="underline hover:text-white">
+                            Privacy Policy
+                        </Link>{" "}
+                        and{" "}
+                        <Link to="/terms" className="underline hover:text-white">
+                            Terms & Conditions
+                        </Link>
+                    </label>
+                </div>
+
                 <button
                     type="submit"
-                    className="w-full py-3 px-4 bg-[#4180AD] rounded-lg text-lg font-medium hover:bg-[#518BB7] transition-colors mt-8"
+                    disabled={!accepted}
+                    className={`w-full py-3 px-4 rounded-lg text-lg font-medium transition-colors mt-4 ${accepted
+                        ? "bg-[#4180AD] hover:bg-[#518BB7]"
+                        : "bg-gray-500 cursor-not-allowed"
+                        }`}
                 >
                     Sign Up
                 </button>
@@ -100,12 +128,6 @@ export default function SignUpPage() {
                 <img src="/google.svg" className="w-8 h-8" />
                 Google
             </button>
-            <div className="text-center mt-6 text-[#ACC0D8]">
-
-                <Link to="/auth/login" className="text-[#ACC0D8] hover:underline font-medium">
-                    Privacy policy
-                </Link>
-            </div>
         </div>
-    )
+    );
 }

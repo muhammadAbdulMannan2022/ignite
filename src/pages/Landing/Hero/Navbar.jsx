@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { Menu, X } from "lucide-react"
-import { Link, useLocation } from "react-router"
+import { Link, useLocation, useNavigate } from "react-router"
 import GradientText from "../../../components/utils/GradientText"
 import GradientButton from "../../../components/utils/GradientButton"
 
@@ -16,6 +16,7 @@ const GlassyNavbar = ({ className }) => {
   const mobileMenuItemsRef = useRef([])
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -140,7 +141,7 @@ const GlassyNavbar = ({ className }) => {
             </div>
           </div>
 
-          <div ref={loginBtnRef} className="hidden md:block">
+          <div onClick={() => { navigate("/auth/login") }} ref={loginBtnRef} className="hidden md:block">
             <GradientButton
               className="px-3 py-2"
               onMouseEnter={(e) => {
@@ -195,9 +196,10 @@ const GlassyNavbar = ({ className }) => {
               </Link>
             )
           })}
-          <div className="pt-4 pb-2">
+          <div onClick={() => { navigate("/auth/login") }} className="pt-4 pb-2">
             <GradientButton
               className="w-full px-6 py-2"
+
               onMouseEnter={(e) => {
                 gsap.to(e.target, { scale: 1.05, duration: 0.2 })
               }}

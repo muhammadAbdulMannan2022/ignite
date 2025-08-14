@@ -18,7 +18,6 @@ export default function LoginPage() {
                 </h2>
             </div>
 
-
             <div className="space-y-4 sm:space-y-6">
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-[#ACC0D8] mb-2">
