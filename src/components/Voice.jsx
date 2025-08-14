@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mic, MicOff } from "lucide-react";
+import Animation from "./lib/Animation";
 
 export default function Voice({ isVideo }) {
     const audioRef = useRef(null);
@@ -14,16 +15,8 @@ export default function Voice({ isVideo }) {
     const isTalkingRef = useRef(false);
     const [started, setStarted] = useState(false);
     const [videoStarted, setVideoStarted] = useState(false);
-    const [borderRadius, setBorderRadius] = useState(
-        "57% 43% 70% 30% / 30% 37% 63% 70%"
-    );
-
-    const generateRandomBorderRadius = () => {
-        const randomPercents = Array.from({ length: 8 }, () =>
-            Math.floor(Math.random() * 51) + 40
-        );
-        return `${randomPercents[0]}% ${randomPercents[1]}% ${randomPercents[2]}% ${randomPercents[3]}% / ${randomPercents[4]}% ${randomPercents[5]}% ${randomPercents[6]}% ${randomPercents[7]}%`;
-    };
+    const [animValue, setAnimValue] = useState(0.1);
+    const [lineHeight, setLineHeight] = useState(150);
 
     const startMic = async () => {
         try {
@@ -177,14 +170,7 @@ export default function Voice({ isVideo }) {
         }
     }, [isVideo]);
 
-    // Talking animation
-    useEffect(() => {
-        if (!isTalking) return;
-        const interval = setInterval(() => {
-            setBorderRadius(generateRandomBorderRadius());
-        }, 200);
-        return () => clearInterval(interval);
-    }, [isTalking]);
+
 
     // Start mic on mount
     useEffect(() => {
@@ -215,17 +201,19 @@ export default function Voice({ isVideo }) {
 
             {started && (
                 <div className="relative w-40 h-40">
-                    <div
-                        className={`absolute inset-0 rounded-full border-4 ${isTalking ? "" : "border-gray-300"}`}
-                    ></div>
+                    {/* <div
+                        className={`absolute inset-0 rounded-full ${isTalking ? "" : "border-gray-300"}`}
+                    ></div> */}
                     <div
                         className={`relative z-10 w-full h-full rounded-full flex items-center justify-center text-white 
-              ${isTalking ? "bg-gradient-to-br from-blue-700 to-pink-300 shadow-lg" : "bg-gray-400 dark:bg-gray-600"}`}
+              ${isTalking ? "" : "bg-gray-400 dark:bg-gray-600"}`}
                         style={{
-                            borderRadius: isTalking ? borderRadius : "",
+
                             transition: "border-radius 0.3s ease-in-out",
                         }}
                     >
+                        {isTalking && <Animation />}
+
                         {isTalking ? (
                             <Mic className="w-10 h-10" />
                         ) : (

@@ -107,7 +107,7 @@ const GlassyNavbar = ({ className }) => {
             <div className="text-white font-bold text-xl tracking-wider">
               <Link to="/">
                 <div className="w-32">
-                  <img src="/fevicon.png" alt="Logo" className="w-full" />
+                  <img src="/navlogo.png" alt="Logo" className="h-10" />
                 </div>
               </Link>
             </div>

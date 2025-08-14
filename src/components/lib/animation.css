@@ -1,0 +1,841 @@
+body {
+    background: #643a7a;
+}
+
+.frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -200px;
+    border-radius: 2px;
+    overflow: hidden;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.rings {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 160px;
+    left: 160px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover .dot .fill {
+        background: #ad2fed;
+        transition: .2s;
+    }
+}
+
+
+@keyframes pulse {
+    50% {
+        transform: scale(.2);
+        opacity: 0;
+    }
+}
+
+.rings .dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 40px;
+    left: 40px;
+}
+
+.rings .dot .fill {
+    width: 3px;
+    height: 3px;
+    background: #de42fd;
+    border-radius: 50px;
+}
+
+.ring-1s .fill {
+    animation: pulsate 2s ease-in-out 0.3333333333s alternate infinite both;
+}
+
+.ring-1s .dot-1 {
+    transform: translate3d(0, -40px, 0) rotate(0deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-2 {
+    transform: translate3d(0, -40px, 0) rotate(20deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-3 {
+    transform: translate3d(0, -40px, 0) rotate(40deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-4 {
+    transform: translate3d(0, -40px, 0) rotate(60deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-5 {
+    transform: translate3d(0, -40px, 0) rotate(80deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-6 {
+    transform: translate3d(0, -40px, 0) rotate(100deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-7 {
+    transform: translate3d(0, -40px, 0) rotate(120deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-8 {
+    transform: translate3d(0, -40px, 0) rotate(140deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-9 {
+    transform: translate3d(0, -40px, 0) rotate(160deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-10 {
+    transform: translate3d(0, -40px, 0) rotate(180deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-11 {
+    transform: translate3d(0, -40px, 0) rotate(200deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-12 {
+    transform: translate3d(0, -40px, 0) rotate(220deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-13 {
+    transform: translate3d(0, -40px, 0) rotate(240deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-14 {
+    transform: translate3d(0, -40px, 0) rotate(260deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-15 {
+    transform: translate3d(0, -40px, 0) rotate(280deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-16 {
+    transform: translate3d(0, -40px, 0) rotate(300deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-17 {
+    transform: translate3d(0, -40px, 0) rotate(320deg);
+    transform-origin: 0 40px;
+}
+
+.ring-1s .dot-18 {
+    transform: translate3d(0, -40px, 0) rotate(340deg);
+    transform-origin: 0 40px;
+}
+
+.ring-2s .fill {
+    animation: pulsate 2s ease-in-out 0.6666666667s alternate infinite both;
+}
+
+.ring-2s .dot-1 {
+    transform: translate3d(0, -51px, 0) rotate(0deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-2 {
+    transform: translate3d(0, -51px, 0) rotate(15deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-3 {
+    transform: translate3d(0, -51px, 0) rotate(30deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-4 {
+    transform: translate3d(0, -51px, 0) rotate(45deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-5 {
+    transform: translate3d(0, -51px, 0) rotate(60deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-6 {
+    transform: translate3d(0, -51px, 0) rotate(75deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-7 {
+    transform: translate3d(0, -51px, 0) rotate(90deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-8 {
+    transform: translate3d(0, -51px, 0) rotate(105deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-9 {
+    transform: translate3d(0, -51px, 0) rotate(120deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-10 {
+    transform: translate3d(0, -51px, 0) rotate(135deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-11 {
+    transform: translate3d(0, -51px, 0) rotate(150deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-12 {
+    transform: translate3d(0, -51px, 0) rotate(165deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-13 {
+    transform: translate3d(0, -51px, 0) rotate(180deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-14 {
+    transform: translate3d(0, -51px, 0) rotate(195deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-15 {
+    transform: translate3d(0, -51px, 0) rotate(210deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-16 {
+    transform: translate3d(0, -51px, 0) rotate(225deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-17 {
+    transform: translate3d(0, -51px, 0) rotate(240deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-18 {
+    -webkit-transform: translate3d(0, -51px, 0) rotate(255deg);
+    transform: translate3d(0, -51px, 0) rotate(255deg);
+    -webkit-transform-origin: 0 51px;
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-19 {
+    transform: translate3d(0, -51px, 0) rotate(270deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-20 {
+    transform: translate3d(0, -51px, 0) rotate(285deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-21 {
+    transform: translate3d(0, -51px, 0) rotate(300deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-22 {
+    transform: translate3d(0, -51px, 0) rotate(315deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-23 {
+    transform: translate3d(0, -51px, 0) rotate(330deg);
+    transform-origin: 0 51px;
+}
+
+.ring-2s .dot-24 {
+    transform: translate3d(0, -51px, 0) rotate(345deg);
+    transform-origin: 0 51px;
+}
+
+.ring-3s .fill {
+    animation: pulsate 2s ease-in-out 1s alternate infinite both;
+}
+
+.ring-3s .dot-1 {
+    transform: translate3d(0, -62px, 0) rotate(0deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-2 {
+    transform: translate3d(0, -62px, 0) rotate(12deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-3 {
+    transform: translate3d(0, -62px, 0) rotate(24deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-4 {
+    transform: translate3d(0, -62px, 0) rotate(36deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-5 {
+    transform: translate3d(0, -62px, 0) rotate(48deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-6 {
+    transform: translate3d(0, -62px, 0) rotate(60deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-7 {
+    transform: translate3d(0, -62px, 0) rotate(72deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-8 {
+    transform: translate3d(0, -62px, 0) rotate(84deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-9 {
+    transform: translate3d(0, -62px, 0) rotate(96deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-10 {
+    transform: translate3d(0, -62px, 0) rotate(108deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-11 {
+    transform: translate3d(0, -62px, 0) rotate(120deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-12 {
+    transform: translate3d(0, -62px, 0) rotate(132deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-13 {
+    transform: translate3d(0, -62px, 0) rotate(144deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-14 {
+    transform: translate3d(0, -62px, 0) rotate(156deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-15 {
+    transform: translate3d(0, -62px, 0) rotate(168deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-16 {
+    transform: translate3d(0, -62px, 0) rotate(180deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-17 {
+    transform: translate3d(0, -62px, 0) rotate(192deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-18 {
+    transform: translate3d(0, -62px, 0) rotate(204deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-19 {
+    transform: translate3d(0, -62px, 0) rotate(216deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-20 {
+    transform: translate3d(0, -62px, 0) rotate(228deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-21 {
+    transform: translate3d(0, -62px, 0) rotate(240deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-22 {
+    transform: translate3d(0, -62px, 0) rotate(252deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-23 {
+    transform: translate3d(0, -62px, 0) rotate(264deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-24 {
+    transform: translate3d(0, -62px, 0) rotate(276deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-25 {
+    transform: translate3d(0, -62px, 0) rotate(288deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-26 {
+    transform: translate3d(0, -62px, 0) rotate(300deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-27 {
+    transform: translate3d(0, -62px, 0) rotate(312deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-28 {
+    transform: translate3d(0, -62px, 0) rotate(324deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-29 {
+    transform: translate3d(0, -62px, 0) rotate(336deg);
+    transform-origin: 0 62px;
+}
+
+.ring-3s .dot-30 {
+    transform: translate3d(0, -62px, 0) rotate(348deg);
+    transform-origin: 0 62px;
+}
+
+.ring-4s .fill {
+    animation: pulsate 2s ease-in-out 1.3333333333s alternate infinite both;
+}
+
+.ring-4s .dot-1 {
+    transform: translate3d(0, -73px, 0) rotate(0deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-2 {
+    transform: translate3d(0, -73px, 0) rotate(10deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-3 {
+    transform: translate3d(0, -73px, 0) rotate(20deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-4 {
+    transform: translate3d(0, -73px, 0) rotate(30deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-5 {
+    transform: translate3d(0, -73px, 0) rotate(40deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-6 {
+    transform: translate3d(0, -73px, 0) rotate(50deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-7 {
+    transform: translate3d(0, -73px, 0) rotate(60deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-8 {
+    transform: translate3d(0, -73px, 0) rotate(70deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-9 {
+    transform: translate3d(0, -73px, 0) rotate(80deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-10 {
+    transform: translate3d(0, -73px, 0) rotate(90deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-11 {
+    transform: translate3d(0, -73px, 0) rotate(100deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-12 {
+    transform: translate3d(0, -73px, 0) rotate(110deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-13 {
+    transform: translate3d(0, -73px, 0) rotate(120deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-14 {
+    transform: translate3d(0, -73px, 0) rotate(130deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-15 {
+    transform: translate3d(0, -73px, 0) rotate(140deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-16 {
+    transform: translate3d(0, -73px, 0) rotate(150deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-17 {
+    transform: translate3d(0, -73px, 0) rotate(160deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-18 {
+    transform: translate3d(0, -73px, 0) rotate(170deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-19 {
+    transform: translate3d(0, -73px, 0) rotate(180deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-20 {
+    transform: translate3d(0, -73px, 0) rotate(190deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-21 {
+    transform: translate3d(0, -73px, 0) rotate(200deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-22 {
+    transform: translate3d(0, -73px, 0) rotate(210deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-23 {
+    transform: translate3d(0, -73px, 0) rotate(220deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-24 {
+    transform: translate3d(0, -73px, 0) rotate(230deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-25 {
+    transform: translate3d(0, -73px, 0) rotate(240deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-26 {
+    transform: translate3d(0, -73px, 0) rotate(250deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-27 {
+    transform: translate3d(0, -73px, 0) rotate(260deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-28 {
+    transform: translate3d(0, -73px, 0) rotate(270deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-29 {
+    transform: translate3d(0, -73px, 0) rotate(280deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-30 {
+    transform: translate3d(0, -73px, 0) rotate(290deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-31 {
+    transform: translate3d(0, -73px, 0) rotate(300deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-32 {
+    transform: translate3d(0, -73px, 0) rotate(310deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-33 {
+    transform: translate3d(0, -73px, 0) rotate(320deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-34 {
+    transform: translate3d(0, -73px, 0) rotate(330deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-35 {
+    transform: translate3d(0, -73px, 0) rotate(340deg);
+    transform-origin: 0 73px;
+}
+
+.ring-4s .dot-36 {
+    transform: translate3d(0, -73px, 0) rotate(350deg);
+    transform-origin: 0 73px;
+}
+
+.ring-5s .fill {
+    animation: pulsate 2s ease-in-out 1.6666666667s alternate infinite both;
+}
+
+.ring-5s .dot-1 {
+    transform: translate3d(0, -84px, 0) rotate(0deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-2 {
+    transform: translate3d(0, -84px, 0) rotate(8.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-3 {
+    transform: translate3d(0, -84px, 0) rotate(17.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-4 {
+    transform: translate3d(0, -84px, 0) rotate(25.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-5 {
+    transform: translate3d(0, -84px, 0) rotate(34.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-6 {
+    transform: translate3d(0, -84px, 0) rotate(42.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-7 {
+    transform: translate3d(0, -84px, 0) rotate(51.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-8 {
+    transform: translate3d(0, -84px, 0) rotate(60deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-9 {
+    transform: translate3d(0, -84px, 0) rotate(68.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-10 {
+    transform: translate3d(0, -84px, 0) rotate(77.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-11 {
+    transform: translate3d(0, -84px, 0) rotate(85.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-12 {
+    transform: translate3d(0, -84px, 0) rotate(94.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-13 {
+    transform: translate3d(0, -84px, 0) rotate(102.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-14 {
+    transform: translate3d(0, -84px, 0) rotate(111.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-15 {
+    transform: translate3d(0, -84px, 0) rotate(120deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-16 {
+    transform: translate3d(0, -84px, 0) rotate(128.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-17 {
+    transform: translate3d(0, -84px, 0) rotate(137.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-18 {
+    transform: translate3d(0, -84px, 0) rotate(145.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-19 {
+    transform: translate3d(0, -84px, 0) rotate(154.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-20 {
+    transform: translate3d(0, -84px, 0) rotate(162.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-21 {
+    transform: translate3d(0, -84px, 0) rotate(171.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-22 {
+    transform: translate3d(0, -84px, 0) rotate(180deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-23 {
+    transform: translate3d(0, -84px, 0) rotate(188.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-24 {
+    transform: translate3d(0, -84px, 0) rotate(197.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-25 {
+    transform: translate3d(0, -84px, 0) rotate(205.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-26 {
+    transform: translate3d(0, -84px, 0) rotate(214.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-27 {
+    transform: translate3d(0, -84px, 0) rotate(222.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-28 {
+    transform: translate3d(0, -84px, 0) rotate(231.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-29 {
+    transform: translate3d(0, -84px, 0) rotate(240deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-30 {
+    transform: translate3d(0, -84px, 0) rotate(248.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-31 {
+    transform: translate3d(0, -84px, 0) rotate(257.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-32 {
+    transform: translate3d(0, -84px, 0) rotate(265.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-33 {
+    transform: translate3d(0, -84px, 0) rotate(274.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-34 {
+    transform: translate3d(0, -84px, 0) rotate(282.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-35 {
+    transform: translate3d(0, -84px, 0) rotate(291.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-36 {
+    transform: translate3d(0, -84px, 0) rotate(300deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-37 {
+    transform: translate3d(0, -84px, 0) rotate(308.5714285714deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-38 {
+    transform: translate3d(0, -84px, 0) rotate(317.1428571429deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-39 {
+    transform: translate3d(0, -84px, 0) rotate(325.7142857143deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-40 {
+    transform: translate3d(0, -84px, 0) rotate(334.2857142857deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-41 {
+    transform: translate3d(0, -84px, 0) rotate(342.8571428571deg);
+    transform-origin: 0 84px;
+}
+
+.ring-5s .dot-42 {
+    transform: translate3d(0, -84px, 0) rotate(351.4285714286deg);
+    transform-origin: 0 84px;
+}
+
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -15,7 +15,7 @@ export default function Topbar({ toggleSidebar }) {
                 <Menu className="h-5 w-5 text-white" />
             </button>
             <div className="relative flex-1 max-w-md">
-                <img src="/logo.png" className="h-20" alt="S.E.N.S.E.S." />
+                <img src="/navlogo.png" className="h-10" alt="S.E.N.S.E.S." />
             </div>
             <div className="flex items-center gap-4"></div>
         </header>
