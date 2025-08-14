@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mic, MicOff } from "lucide-react";
 import Animation from "./lib/Animation";
+import AnimatedMicButton from "./utils/GradientBorder";
 
 export default function Voice({ isVideo }) {
     const audioRef = useRef(null);
@@ -214,8 +215,10 @@ export default function Voice({ isVideo }) {
                     >
                         {isTalking && <Animation />}
 
+
                         {isTalking ? (
                             <Mic className="w-10 h-10" />
+                            // <AnimatedMicButton />
                         ) : (
                             <MicOff className="w-10 h-10" />
                         )}
