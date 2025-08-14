@@ -6,7 +6,7 @@ import UserSidebar from "./UserPages/UserSideBar"
 import UserTopbar from "./UserPages/UserTopBar"
 
 export default function UserLayout() {
-    const [memberType, setMemberType] = useState("free")
+    const [memberType, setMemberType] = useState("primum")
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
         if (typeof window !== "undefined") {

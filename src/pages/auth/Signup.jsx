@@ -4,9 +4,9 @@ import { Link } from "react-router"
 export default function SignUpPage() {
     return (
 
-        <div className="w-full lg:w-1/2 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+        <div className="w-full lg:w-1/2 px-6 sm:p-8 md:px-10  lg:px-12 py-6 flex flex-col justify-center">
             {/* S.E.N.S.E.S. Logo Image */}
-            <div className="text-center mb-6 sm:mb-8">
+            <div className="text-center mb-2">
                 <div className="relative w-[250px] mx-auto -mb-12">
                     <img
                         src="/logo.png"
@@ -15,12 +15,12 @@ export default function SignUpPage() {
                         loading="lazy"
                     />
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-semibold mt-6 sm:mt-8 mb-4 sm:mb-6 text-[#ACC0D8]">
+                <h2 className="text-3xl sm:text-4xl font-semibold mt-2 sm:mt-8 mb-2 sm:mb-6 text-[#ACC0D8]">
                     Welcome
                 </h2>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-2">
                 <div>
                     <label htmlFor="email" className="block text-left text-sm font-medium text-[#ACC0D8] mb-2">
                         Email
@@ -100,6 +100,12 @@ export default function SignUpPage() {
                 <img src="/google.svg" className="w-8 h-8" />
                 Google
             </button>
+            <div className="text-center mt-6 text-[#ACC0D8]">
+
+                <Link to="/auth/login" className="text-[#ACC0D8] hover:underline font-medium">
+                    Privacy policy
+                </Link>
+            </div>
         </div>
     )
 }
